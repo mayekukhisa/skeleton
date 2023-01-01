@@ -16,11 +16,17 @@
 package io.github.mayekukhisa.skeleton
 
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.options.versionOption
+import io.github.mayekukhisa.skeleton.model.TemplatesCatalog
+import io.github.mayekukhisa.skeleton.subcommand.Create
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
 class Skeleton : CliktCommand(
    help = "A project template generator tool",
    printHelpOnEmptyArgs = true,
+   invokeWithoutSubcommand = true,
 ) {
 
    init {
@@ -28,8 +34,21 @@ class Skeleton : CliktCommand(
    }
 
    override fun run() = Unit
+
+   companion object {
+      val templates: List<String>
+
+      init {
+         val templatesCatalog = Json.decodeFromString<TemplatesCatalog>(
+            Utils.resourceToString("templates/catalog.json"),
+         )
+         templates = templatesCatalog.entries
+      }
+   }
 }
 
 fun main(args: Array<String>) {
-   Skeleton().main(args)
+   Skeleton()
+      .subcommands(Create())
+      .main(args)
 }

@@ -1,0 +1,20 @@
+{
+   "textFiles": [
+      {
+         "src": "text/_editorconfig",
+         "dest": ".editorconfig"
+      },
+      {
+         "src": "text/_gitattributes",
+         "dest": ".gitattributes"
+      },
+      {
+         "src": "text/_gitignore",
+         "dest": ".gitignore"
+      },
+      {
+         "src": "text/_vscode-settings.json",
+         "dest": ".vscode/settings.json"
+      }
+   ]
+}
