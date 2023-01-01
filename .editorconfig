@@ -1,0 +1,29 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 3
+indent_style = space
+insert_final_newline = true
+max_line_length = 120
+trim_trailing_whitespace = true
+ij_wrap_on_typing = true
+
+[*.bat]
+end_of_line = crlf
+
+[*.json]
+ij_json_array_wrapping = on_every_item
+ij_json_object_wrapping = on_every_item
+ij_json_spaces_within_braces = true
+
+[{*.kt,*.kts}]
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = true
+ij_kotlin_name_count_to_use_star_import = 2147483647
+ij_kotlin_name_count_to_use_star_import_for_members = 2147483647
+ij_kotlin_packages_to_use_import_on_demand = unset
+
+[*.properties]
+ij_properties_keep_blank_lines = true
