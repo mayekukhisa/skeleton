@@ -16,7 +16,9 @@
 package io.github.mayekukhisa.skeleton
 
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.PrintMessage
 import com.github.ajalt.clikt.core.subcommands
+import com.github.ajalt.clikt.parameters.options.eagerOption
 import com.github.ajalt.clikt.parameters.options.versionOption
 import io.github.mayekukhisa.skeleton.model.TemplatesCatalog
 import io.github.mayekukhisa.skeleton.subcommand.Create
@@ -31,6 +33,12 @@ class Skeleton : CliktCommand(
 
    init {
       versionOption("0.1.0")
+      eagerOption(
+         "--list-templates",
+         help = "List available templates and exit",
+      ) {
+         throw PrintMessage(templates.joinToString(separator = "\n") { it })
+      }
    }
 
    override fun run() = Unit
