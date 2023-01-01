@@ -1,0 +1,13 @@
+{
+   "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+   },
+   "[markdown]": {
+      "editor.wordWrap": "wordWrapColumn"
+   },
+   "editor.formatOnSave": true,
+   "editor.rulers": [120],
+   "editor.wordWrap": "wordWrapColumn",
+   "editor.wordWrapColumn": 120,
+   "editor.wrappingIndent": "indent"
+}
