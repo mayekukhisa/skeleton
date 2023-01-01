@@ -18,6 +18,8 @@ package com.mayekukhisa.tool.projectgen
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.versionOption
+import java.io.File
+import java.util.Properties
 
 class App : CliktCommand(
    name = BuildConfig.NAME,
@@ -30,4 +32,26 @@ class App : CliktCommand(
    }
 
    override fun run() = Unit
+
+   companion object {
+      val configFile: File by lazy {
+         val osName = System.getProperty(/* key = */ "os.name").lowercase()
+         val userHome = System.getProperty(/* key = */ "user.home")
+
+         val configFilepath = when {
+            osName.contains("win") -> "$userHome\\AppData\\Local\\${BuildConfig.NAME}\\config.properties"
+            osName.contains("mac") -> "$userHome/Library/Application Support/${BuildConfig.NAME}/config.properties"
+            else -> "$userHome/.config/${BuildConfig.NAME}/config.properties"
+         }
+
+         File(configFilepath).apply {
+            if (!exists()) {
+               parentFile.mkdirs()
+               createNewFile()
+            }
+         }
+      }
+
+      val config = Properties().apply { configFile.inputStream().use(::load) }
+   }
 }

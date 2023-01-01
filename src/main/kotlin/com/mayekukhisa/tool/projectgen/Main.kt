@@ -16,6 +16,11 @@
  */
 package com.mayekukhisa.tool.projectgen
 
+import com.github.ajalt.clikt.core.subcommands
+import com.mayekukhisa.tool.projectgen.command.ConfigCommand
+
 fun main(args: Array<String>) {
-   App().main(args)
+   App()
+      .subcommands(ConfigCommand())
+      .main(args)
 }
