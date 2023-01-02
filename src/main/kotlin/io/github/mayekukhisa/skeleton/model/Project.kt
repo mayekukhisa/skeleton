@@ -15,11 +15,6 @@
  */
 package io.github.mayekukhisa.skeleton.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class TemplateFile(
-   val src: String,
-   val dest: String,
-   val executable: Boolean,
-)
+interface Project {
+   val projectDir: String
+}

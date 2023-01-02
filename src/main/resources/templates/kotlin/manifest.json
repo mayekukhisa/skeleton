@@ -1,0 +1,73 @@
+{
+   "binaryFiles": [
+      {
+         "src": "binary/gradle-wrapper.jar",
+         "dest": "gradle/wrapper/gradle-wrapper.jar",
+         "executable": false
+      }
+   ],
+   "freemarkerFiles": [
+      {
+         "src": "freemarker/AppTest.kt.ftl",
+         "dest": "src/test/kotlin/${packageName?replace('.', '/')}/AppTest.kt",
+         "executable": false
+      },
+      {
+         "src": "freemarker/build.gradle.kts.ftl",
+         "dest": "build.gradle.kts",
+         "executable": false
+      },
+      {
+         "src": "freemarker/Main.kt.ftl",
+         "dest": "src/main/kotlin/${packageName?replace('.', '/')}/Main.kt",
+         "executable": false
+      },
+      {
+         "src": "freemarker/settings.gradle.kts.ftl",
+         "dest": "settings.gradle.kts",
+         "executable": false
+      }
+   ],
+   "textFiles": [
+      {
+         "src": "text/_editorconfig",
+         "dest": ".editorconfig",
+         "executable": false
+      },
+      {
+         "src": "text/_gitattributes",
+         "dest": ".gitattributes",
+         "executable": false
+      },
+      {
+         "src": "text/_gitignore",
+         "dest": ".gitignore",
+         "executable": false
+      },
+      {
+         "src": "text/_vscode-settings.json",
+         "dest": ".vscode/settings.json",
+         "executable": false
+      },
+      {
+         "src": "text/gradle.properties",
+         "dest": "gradle.properties",
+         "executable": false
+      },
+      {
+         "src": "text/gradle-wrapper.properties",
+         "dest": "gradle/wrapper/gradle-wrapper.properties",
+         "executable": false
+      },
+      {
+         "src": "text/gradlew",
+         "dest": "gradlew",
+         "executable": true
+      },
+      {
+         "src": "text/gradlew.bat",
+         "dest": "gradlew.bat",
+         "executable": false
+      }
+   ]
+}

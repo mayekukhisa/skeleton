@@ -1,20 +1,26 @@
 {
+   "binaryFiles": [],
+   "freemarkerFiles": [],
    "textFiles": [
       {
          "src": "text/_editorconfig",
-         "dest": ".editorconfig"
+         "dest": ".editorconfig",
+         "executable": false
       },
       {
          "src": "text/_gitattributes",
-         "dest": ".gitattributes"
+         "dest": ".gitattributes",
+         "executable": false
       },
       {
          "src": "text/_gitignore",
-         "dest": ".gitignore"
+         "dest": ".gitignore",
+         "executable": false
       },
       {
          "src": "text/_vscode-settings.json",
-         "dest": ".vscode/settings.json"
+         "dest": ".vscode/settings.json",
+         "executable": false
       }
    ]
 }

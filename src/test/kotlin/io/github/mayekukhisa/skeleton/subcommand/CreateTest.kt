@@ -16,6 +16,7 @@
 package io.github.mayekukhisa.skeleton.subcommand
 
 import com.github.ajalt.clikt.core.ProgramResult
+import com.github.ajalt.clikt.core.UsageError
 import org.apache.commons.io.FileUtils
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -23,6 +24,7 @@ import java.io.PrintStream
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 class CreateTest {
@@ -59,6 +61,32 @@ class CreateTest {
       }
    }
 
+   @Test
+   fun `generates kotlin projects`() {
+      var projectDir = tempDir.resolve("default-kotlin-project")
+      with(Create()) {
+         parse(arrayOf("--template", "kotlin", "$projectDir"))
+         checkGeneratedFiles(projectDir)
+      }
+
+      projectDir = tempDir.resolve("custom-kotlin-project")
+      with(Create()) {
+         parse(arrayOf("--template", "kotlin", "--package", "com.mycompany.myapp", "--name", "My App", "$projectDir"))
+         checkGeneratedFiles(projectDir)
+      }
+   }
+
+   @Test
+   fun `fails on invalid package names`() {
+      val projectDir = tempDir.resolve("custom-kotlin-project")
+      assertFailsWith<UsageError> {
+         Create().parse(arrayOf("--template", "kotlin", "--package", "com.myCompany.myApp", "$projectDir"))
+      }
+      assertFailsWith<UsageError> {
+         Create().parse(arrayOf("--template", "kotlin", "--package", "com.my_company.my_app", "$projectDir"))
+      }
+   }
+
    @AfterTest
    fun tearDown() {
       System.setOut(originalStdOut)
@@ -73,6 +101,11 @@ class CreateTest {
       getTemplateManifest().textFiles.forEach {
          val generatedFile = projectDir.resolve(it.dest)
          assert(generatedFile.exists()) { "Expected $generatedFile to exist" }
+         assertEquals(
+            it.executable,
+            generatedFile.canExecute(),
+            "Expected $generatedFile to ${if (it.executable) "be executable" else "not be executable"}",
+         )
       }
    }
 }

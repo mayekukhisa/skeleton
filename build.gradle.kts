@@ -80,11 +80,21 @@ spotless {
          prettier().config(it)
       }
    }
+
+   format("FreeMarker") {
+      val licenseHeaderPath = "spotless/copyright.ftl"
+
+      target("**/*.ftl")
+      targetExclude("**/build/**/*.ftl", licenseHeaderPath)
+      licenseHeaderFile(rootProject.file(licenseHeaderPath), "^(?!((<#)| )[-~]).*")
+         .updateYearWithLatest(true)
+   }
 }
 
 dependencies {
    implementation("com.github.ajalt.clikt:clikt:3.5.1")
    implementation("commons-io:commons-io:2.11.0")
+   implementation("org.freemarker:freemarker:2.3.31")
    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
    testImplementation(kotlin("test"))
 }
