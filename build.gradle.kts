@@ -19,7 +19,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
    application
    id("com.diffplug.spotless") version "6.12.0"
-   kotlin("jvm") version "1.7.21"
+
+   val kotlinVersion = "1.7.21"
+   kotlin("jvm") version kotlinVersion
+   kotlin("plugin.serialization") version kotlinVersion
 }
 
 kotlin {
@@ -81,6 +84,9 @@ repositories {
 
 dependencies {
    implementation("com.github.ajalt.clikt:clikt:3.5.1")
+   implementation("commons-io:commons-io:2.11.0")
+   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+
    testImplementation(kotlin("test"))
 }
 

@@ -17,7 +17,16 @@
 package com.mayekukhisa.tool.projectgen
 
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.PrintMessage
+import com.github.ajalt.clikt.parameters.options.eagerOption
 import com.github.ajalt.clikt.parameters.options.versionOption
+import com.mayekukhisa.tool.projectgen.model.Template
+import com.mayekukhisa.tool.projectgen.model.TemplatesCatalog
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import org.apache.commons.io.FileUtils
 import java.io.File
 import java.util.Properties
 
@@ -29,6 +38,15 @@ class App : CliktCommand(
 ) {
    init {
       versionOption(version = BuildConfig.VERSION)
+      eagerOption(name = "--list-templates", help = "List available templates and exit") {
+         throw PrintMessage(
+            message = if (templates.isEmpty()) {
+               "No templates found"
+            } else {
+               templates.joinToString(separator = System.lineSeparator()) { it.name }
+            },
+         )
+      }
    }
 
    override fun run() = Unit
@@ -53,5 +71,31 @@ class App : CliktCommand(
       }
 
       val config = Properties().apply { configFile.inputStream().use(::load) }
+
+      val templates: List<Template> by lazy {
+         val templatesCatalog = config.getProperty(/* key = */ "templates.dir")
+            ?.let {
+               File(/* parent = */ it, /* child = */ "catalog.json").apply {
+                  if (!exists()) {
+                     FileUtils.writeStringToFile(
+                        /* file = */ this,
+                        /* data = */ Json.encodeToString(value = TemplatesCatalog(templates = emptyList())),
+                        /* charset = */ Charsets.UTF_8,
+                     )
+                  }
+               }
+            }
+            ?: throw PrintMessage(message = "Error: Templates directory not set", error = true)
+
+         try {
+            with(Json { ignoreUnknownKeys = true }) {
+               decodeFromString<TemplatesCatalog>(
+                  FileUtils.readFileToString(/* file = */ templatesCatalog, /* charsetName = */ Charsets.UTF_8),
+               ).templates
+            }
+         } catch (e: SerializationException) {
+            throw PrintMessage(message = "Error: Invalid templates catalog", error = true)
+         }
+      }
    }
 }
