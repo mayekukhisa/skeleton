@@ -57,7 +57,7 @@ spotless {
 
       kotlinGradle {
          target("**/*.kts")
-         targetExclude("**/build/**/*.kts")
+         targetExclude("**/build/**/*.kts", "**/templates/**/*.kts")
          ktlint().editorConfigOverride(it)
          licenseHeaderFile(rootProject.file(licenseHeaderPath), "^(?![\\/ ]\\*).*")
             .updateYearWithLatest(true)

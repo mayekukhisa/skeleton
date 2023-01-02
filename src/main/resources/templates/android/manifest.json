@@ -1,0 +1,188 @@
+{
+   "binaryFiles": [
+      {
+         "src": "binary/gradle-wrapper.jar",
+         "dest": "gradle/wrapper/gradle-wrapper.jar",
+         "executable": false
+      },
+      {
+         "src": "binary/hdpi-ic_launcher.webp",
+         "dest": "app/src/main/res/mipmap-hdpi/ic_launcher.webp",
+         "executable": false
+      },
+      {
+         "src": "binary/hdpi-ic_launcher_round.webp",
+         "dest": "app/src/main/res/mipmap-hdpi/ic_launcher_round.webp",
+         "executable": false
+      },
+      {
+         "src": "binary/mdpi-ic_launcher.webp",
+         "dest": "app/src/main/res/mipmap-mdpi/ic_launcher.webp",
+         "executable": false
+      },
+      {
+         "src": "binary/mdpi-ic_launcher_round.webp",
+         "dest": "app/src/main/res/mipmap-mdpi/ic_launcher_round.webp",
+         "executable": false
+      },
+      {
+         "src": "binary/xhdpi-ic_launcher.webp",
+         "dest": "app/src/main/res/mipmap-xhdpi/ic_launcher.webp",
+         "executable": false
+      },
+      {
+         "src": "binary/xhdpi-ic_launcher_round.webp",
+         "dest": "app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp",
+         "executable": false
+      },
+      {
+         "src": "binary/xxhdpi-ic_launcher.webp",
+         "dest": "app/src/main/res/mipmap-xxhdpi/ic_launcher.webp",
+         "executable": false
+      },
+      {
+         "src": "binary/xxhdpi-ic_launcher_round.webp",
+         "dest": "app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp",
+         "executable": false
+      },
+      {
+         "src": "binary/xxxhdpi-ic_launcher.webp",
+         "dest": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+         "executable": false
+      },
+      {
+         "src": "binary/xxxhdpi-ic_launcher_round.webp",
+         "dest": "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp",
+         "executable": false
+      }
+   ],
+   "freemarkerFiles": [
+      {
+         "src": "freemarker/app-build.gradle.kts.ftl",
+         "dest": "app/build.gradle.kts",
+         "executable": false
+      },
+      {
+         "src": "freemarker/Color.kt.ftl",
+         "dest": "app/src/main/kotlin/${packageName?replace('.', '/')}/ui/theme/Color.kt",
+         "executable": false
+      },
+      {
+         "src": "freemarker/ExampleInstrumentedTest.kt.ftl",
+         "dest": "app/src/androidTest/kotlin/${packageName?replace('.', '/')}/ExampleInstrumentedTest.kt",
+         "executable": false
+      },
+      {
+         "src": "freemarker/ExampleUnitTest.kt.ftl",
+         "dest": "app/src/test/kotlin/${packageName?replace('.', '/')}/ExampleUnitTest.kt",
+         "executable": false
+      },
+      {
+         "src": "freemarker/MainActivity.kt.ftl",
+         "dest": "app/src/main/kotlin/${packageName?replace('.', '/')}/MainActivity.kt",
+         "executable": false
+      },
+      {
+         "src": "freemarker/settings.gradle.kts.ftl",
+         "dest": "settings.gradle.kts",
+         "executable": false
+      },
+      {
+         "src": "freemarker/strings.xml.ftl",
+         "dest": "app/src/main/res/values/strings.xml",
+         "executable": false
+      },
+      {
+         "src": "freemarker/Theme.kt.ftl",
+         "dest": "app/src/main/kotlin/${packageName?replace('.', '/')}/ui/theme/Theme.kt",
+         "executable": false
+      },
+      {
+         "src": "freemarker/Type.kt.ftl",
+         "dest": "app/src/main/kotlin/${packageName?replace('.', '/')}/ui/theme/Type.kt",
+         "executable": false
+      }
+   ],
+   "textFiles": [
+      {
+         "src": "text/_editorconfig",
+         "dest": ".editorconfig",
+         "executable": false
+      },
+      {
+         "src": "text/_gitattributes",
+         "dest": ".gitattributes",
+         "executable": false
+      },
+      {
+         "src": "text/_gitignore",
+         "dest": ".gitignore",
+         "executable": false
+      },
+      {
+         "src": "text/AndroidManifest.xml",
+         "dest": "app/src/main/AndroidManifest.xml",
+         "executable": false
+      },
+      {
+         "src": "text/build.gradle.kts",
+         "dest": "build.gradle.kts",
+         "executable": false
+      },
+      {
+         "src": "text/gradle.properties",
+         "dest": "gradle.properties",
+         "executable": false
+      },
+      {
+         "src": "text/gradle-wrapper.properties",
+         "dest": "gradle/wrapper/gradle-wrapper.properties",
+         "executable": false
+      },
+      {
+         "src": "text/gradlew",
+         "dest": "gradlew",
+         "executable": true
+      },
+      {
+         "src": "text/gradlew.bat",
+         "dest": "gradlew.bat",
+         "executable": false
+      },
+      {
+         "src": "text/ic_launcher.xml",
+         "dest": "app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+         "executable": false
+      },
+      {
+         "src": "text/ic_launcher_background.xml",
+         "dest": "app/src/main/res/drawable/ic_launcher_background.xml",
+         "executable": false
+      },
+      {
+         "src": "text/ic_launcher_foreground.xml",
+         "dest": "app/src/main/res/drawable-v24/ic_launcher_foreground.xml",
+         "executable": false
+      },
+      {
+         "src": "text/ic_launcher_round.xml",
+         "dest": "app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml",
+         "executable": false
+      },
+      {
+         "src": "text/night-themes.xml",
+         "dest": "app/src/main/res/values-night/themes.xml",
+         "executable": false
+      },
+      {
+         "src": "text/spotless-xml.prefs",
+         "dest": "spotless/xml.prefs",
+         "executable": false
+      },
+      {
+         "src": "text/themes.xml",
+         "dest": "app/src/main/res/values/themes.xml",
+         "executable": false
+      }
+   ]
+}

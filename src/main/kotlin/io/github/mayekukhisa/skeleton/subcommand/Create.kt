@@ -88,10 +88,10 @@ class Create : CliktCommand(
    }
 
    private val projectModel: Project by lazy {
-      if (projectTemplate == "kotlin") {
-         KotlinProject(projectPackage, projectDir, projectName)
-      } else {
-         BasicProject(projectDir)
+      when (projectTemplate) {
+         "android" -> KotlinProject(projectPackage, projectDir, projectName)
+         "kotlin" -> KotlinProject(projectPackage, projectDir, projectName)
+         else -> BasicProject(projectDir)
       }
    }
 

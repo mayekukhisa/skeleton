@@ -87,6 +87,21 @@ class CreateTest {
       }
    }
 
+   @Test
+   fun `generates android projects`() {
+      var projectDir = tempDir.resolve("default-android-project")
+      with(Create()) {
+         parse(arrayOf("--template", "android", "$projectDir"))
+         checkGeneratedFiles(projectDir)
+      }
+
+      projectDir = tempDir.resolve("custom-android-project")
+      with(Create()) {
+         parse(arrayOf("--template", "android", "--package", "com.mycompany.myapp", "--name", "My App", "$projectDir"))
+         checkGeneratedFiles(projectDir)
+      }
+   }
+
    @AfterTest
    fun tearDown() {
       System.setOut(originalStdOut)
