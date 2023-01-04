@@ -19,7 +19,7 @@ package com.mayekukhisa.tool.projectgen.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Template(
-   val name: String,
-   val path: String,
+data class TemplateFile(
+   val sourcePath: String,
+   val targetPath: String,
 )
