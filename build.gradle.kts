@@ -76,6 +76,12 @@ spotless {
          targetExclude("**/build/**/*.md")
          prettier().config(it)
       }
+
+      format("Yaml") {
+         target("**/*.yml")
+         targetExclude("**/build/**/*.yml")
+         prettier().config(it)
+      }
    }
 }
 
