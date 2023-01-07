@@ -1,4 +1,4 @@
-./.editorconfig
-./.gitattributes
-./.gitignore
-./.vscode/settings.json
+644 ./.editorconfig
+644 ./.gitattributes
+644 ./.gitignore
+644 ./.vscode/settings.json

@@ -1,0 +1,15 @@
+644 ./.editorconfig
+644 ./.gitattributes
+644 ./.gitignore
+644 ./.vscode/settings.json
+644 ./build.gradle.kts
+644 ./gradle.properties
+644 ./gradle/wrapper/gradle-wrapper.jar
+644 ./gradle/wrapper/gradle-wrapper.properties
+644 ./gradlew.bat
+644 ./settings.gradle.kts
+644 ./spotless/config/prettierrc.yml
+644 ./src/main/kotlin/com/example/App.kt
+644 ./src/main/kotlin/com/example/Main.kt
+644 ./src/test/kotlin/com/example/ExampleUnitTest.kt
+755 ./gradlew

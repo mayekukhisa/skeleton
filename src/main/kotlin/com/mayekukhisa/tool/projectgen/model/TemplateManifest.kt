@@ -20,5 +20,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TemplateManifest(
+   val binaryFiles: List<TemplateFile>,
+   val freemarkerFiles: List<TemplateFile>,
    val textFiles: List<TemplateFile>,
 )

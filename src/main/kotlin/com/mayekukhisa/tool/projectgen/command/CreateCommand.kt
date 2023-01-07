@@ -21,10 +21,14 @@ import com.github.ajalt.clikt.core.PrintMessage
 import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.arguments.convert
 import com.github.ajalt.clikt.parameters.options.convert
+import com.github.ajalt.clikt.parameters.options.default
+import com.github.ajalt.clikt.parameters.options.defaultLazy
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
+import com.github.ajalt.clikt.parameters.options.validate
 import com.github.ajalt.clikt.parameters.types.file
 import com.mayekukhisa.tool.projectgen.App
+import com.mayekukhisa.tool.projectgen.model.TemplateFile
 import com.mayekukhisa.tool.projectgen.model.TemplateManifest
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.decodeFromString
@@ -32,6 +36,9 @@ import kotlinx.serialization.json.Json
 import org.apache.commons.io.FileUtils
 import java.io.File
 import java.io.FileNotFoundException
+import java.io.StringWriter
+import java.util.Locale
+import freemarker.template.Configuration as FreeMarker
 
 class CreateCommand : CliktCommand(
    name = "create",
@@ -48,12 +55,40 @@ class CreateCommand : CliktCommand(
       }.getOrNull() ?: fail(message = value)
    }.required()
 
+   private val projectName by option(
+      "-n",
+      "--name",
+      metavar = "NAME",
+      help = "The name of the project",
+   ).defaultLazy("project's directory name") {
+      projectDir.name
+   }
+
+   private val packageName by option(
+      "-p",
+      "--package",
+      metavar = "PACKAGE",
+      help = "The top-level package of the project",
+   ).default("com.example").validate {
+      if (!it.matches(regex = Regex(pattern = "^[a-z]+(\\.[a-z]+)*$"))) {
+         fail(message = "Invalid package")
+      }
+   }
+
    private val projectDir by argument(
       name = "DIRECTORY",
       help = "The directory to create the project at",
    ).file().convert { File(/* pathname = */ it.canonicalPath) }
 
    private val templatesDir by lazy { File(/* pathname = */ App.config.getProperty(/* key = */ "templates.dir")) }
+
+   private val freemarker by lazy {
+      FreeMarker(/* incompatibleImprovements = */ FreeMarker.VERSION_2_3_32).apply {
+         setDirectoryForTemplateLoading(/* dir = */ templatesDir.resolve(relative = projectTemplate.path))
+         defaultEncoding = Charsets.UTF_8.name()
+         locale = Locale.US
+      }
+   }
 
    override fun run() {
       if (!projectDir.mkdirs()) {
@@ -67,21 +102,22 @@ class CreateCommand : CliktCommand(
       try {
          with(Json { ignoreUnknownKeys = true }) {
             decodeFromString<TemplateManifest>(
-               string = FileUtils.readFileToString(
-                  /* file = */ templatesDir.resolve(relative = "${projectTemplate.path}/manifest.json"),
-                  /* charsetName = */ Charsets.UTF_8,
-               ),
+               /*
+                While not all template manifest files require rendering like Freemarker files, we must render them in
+                cases where they derive values from the template's input data model.
+                */
+               string = freemarker.renderTemplateFile(filepath = "manifest.json"),
             ).run {
+               binaryFiles.forEach {
+                  generateProjectFile(templateFile = it)
+               }
+
+               freemarkerFiles.forEach {
+                  generateProjectFile(templateFile = it, shouldRender = true)
+               }
+
                textFiles.forEach {
-                  try {
-                     FileUtils.copyFile(
-                        /* srcFile = */ templatesDir.resolve(relative = "${projectTemplate.path}/${it.sourcePath}"),
-                        /* destFile = */ projectDir.resolve(relative = it.targetPath),
-                     )
-                  } catch (e: FileNotFoundException) {
-                     FileUtils.deleteDirectory(projectDir)
-                     throw PrintMessage(message = "Error: Template file \"${it.sourcePath}\" not found", error = true)
-                  }
+                  generateProjectFile(templateFile = it)
                }
             }
          }
@@ -94,5 +130,43 @@ class CreateCommand : CliktCommand(
       }
 
       echo(message = "Project created at \"$projectDir\"")
+   }
+
+   private fun generateProjectFile(templateFile: TemplateFile, shouldRender: Boolean = false) {
+      try {
+         val outputFile = projectDir.resolve(relative = templateFile.targetPath)
+
+         if (shouldRender) {
+            FileUtils.writeStringToFile(
+               /* file = */ outputFile,
+               /* data = */ freemarker.renderTemplateFile(filepath = templateFile.sourcePath),
+               /* charset = */ Charsets.UTF_8,
+            )
+         } else {
+            FileUtils.copyFile(
+               /* srcFile = */ templatesDir.resolve(relative = "${projectTemplate.path}/${templateFile.sourcePath}"),
+               /* destFile = */ outputFile,
+            )
+         }
+
+         outputFile.setExecutable(/* executable = */ templateFile.executable, /* ownerOnly = */ false)
+      } catch (e: FileNotFoundException) {
+         FileUtils.deleteDirectory(projectDir)
+         throw PrintMessage(message = "Error: Template file \"${templateFile.sourcePath}\" not found", error = true)
+      }
+   }
+
+   private fun FreeMarker.renderTemplateFile(filepath: String): String {
+      return with(StringWriter()) {
+         getTemplate(/* name = */ filepath).process(
+            /* dataModel = */
+            mapOf(
+               "projectName" to projectName,
+               "packageName" to packageName,
+            ),
+            /* out = */ this,
+         )
+         toString()
+      }
    }
 }

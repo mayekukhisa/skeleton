@@ -49,6 +49,20 @@ class CreateCommandTest {
       checkGeneratedFiles(projectDir)
    }
 
+   @Test
+   fun `should create cli-kt default project`() {
+      val projectDir = tempDir.resolve(relative = "cli-kt-default-project")
+      CreateCommand().parse(arrayOf("--template", "cli-kt", "$projectDir"))
+      checkGeneratedFiles(projectDir)
+   }
+
+   @Test
+   fun `should create cli-kt customized project`() {
+      val projectDir = tempDir.resolve(relative = "cli-kt-customized-project")
+      CreateCommand().parse(arrayOf("--template", "cli-kt", "--package", "com.company.project", "$projectDir"))
+      checkGeneratedFiles(projectDir)
+   }
+
    @AfterTest
    fun tearDown() {
       System.setOut(standardOutputStream)
@@ -63,7 +77,7 @@ class CreateCommandTest {
 
       process.outputStream.use {
          IOUtils.write(
-            /* data = */ "find . -type f -exec stat -c \"%n\" {} \\; | LC_ALL=C sort\n",
+            /* data = */ "find . -type f -exec stat -c \"%a %n\" {} \\; | LC_ALL=C sort\n",
             /* output = */ it,
             /* charset = */ Charsets.UTF_8,
          )
