@@ -50,6 +50,20 @@ class CreateCommandTest {
    }
 
    @Test
+   fun `should create android-kt default project`() {
+      val projectDir = tempDir.resolve(relative = "android-kt-default-project")
+      CreateCommand().parse(arrayOf("--template", "android-kt", "$projectDir"))
+      checkGeneratedFiles(projectDir)
+   }
+
+   @Test
+   fun `should create android-kt customized project`() {
+      val projectDir = tempDir.resolve(relative = "android-kt-customized-project")
+      CreateCommand().parse(arrayOf("--template", "android-kt", "--package", "com.company.project", "$projectDir"))
+      checkGeneratedFiles(projectDir)
+   }
+
+   @Test
    fun `should create cli-kt default project`() {
       val projectDir = tempDir.resolve(relative = "cli-kt-default-project")
       CreateCommand().parse(arrayOf("--template", "cli-kt", "$projectDir"))
