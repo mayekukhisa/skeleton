@@ -31,6 +31,7 @@ import io.github.mayekukhisa.skeleton.Skeleton
 import io.github.mayekukhisa.skeleton.Utils
 import io.github.mayekukhisa.skeleton.model.BasicProject
 import io.github.mayekukhisa.skeleton.model.KotlinProject
+import io.github.mayekukhisa.skeleton.model.NextJsProject
 import io.github.mayekukhisa.skeleton.model.Project
 import io.github.mayekukhisa.skeleton.model.TemplateFile
 import io.github.mayekukhisa.skeleton.model.TemplateManifest
@@ -88,10 +89,10 @@ class Create : CliktCommand(
    }
 
    private val projectModel: Project by lazy {
-      if (projectTemplate == "kotlin") {
-         KotlinProject(projectPackage, projectDir, projectName)
-      } else {
-         BasicProject(projectDir)
+      when (projectTemplate) {
+         "kotlin" -> KotlinProject(projectPackage, projectDir, projectName)
+         "nextjs" -> NextJsProject(projectDir, projectName)
+         else -> BasicProject(projectDir)
       }
    }
 

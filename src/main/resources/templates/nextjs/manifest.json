@@ -1,0 +1,88 @@
+{
+   "binaryFiles": [
+      {
+         "src": "binary/favicon.ico",
+         "dest": "public/favicon.ico",
+         "executable": false
+      }
+   ],
+   "freemarkerFiles": [
+      {
+         "src": "freemarker/index.tsx.ftl",
+         "dest": "src/pages/index.tsx",
+         "executable": false
+      },
+      {
+         "src": "freemarker/package.json.ftl",
+         "dest": "package.json",
+         "executable": false
+      }
+   ],
+   "textFiles": [
+      {
+         "src": "text/_editorconfig",
+         "dest": ".editorconfig",
+         "executable": false
+      },
+      {
+         "src": "text/_eslintrc.json",
+         "dest": ".eslintrc.json",
+         "executable": false
+      },
+      {
+         "src": "text/_gitattributes",
+         "dest": ".gitattributes",
+         "executable": false
+      },
+      {
+         "src": "text/_gitignore",
+         "dest": ".gitignore",
+         "executable": false
+      },
+      {
+         "src": "text/_prettierrc.json",
+         "dest": ".prettierrc.json",
+         "executable": false
+      },
+      {
+         "src": "text/_vscode-settings.json",
+         "dest": ".vscode/settings.json",
+         "executable": false
+      },
+      {
+         "src": "text/app.tsx",
+         "dest": "src/pages/_app.tsx",
+         "executable": false
+      },
+      {
+         "src": "text/document.tsx",
+         "dest": "src/pages/_document.tsx",
+         "executable": false
+      },
+      {
+         "src": "text/globals.css",
+         "dest": "src/styles/globals.css",
+         "executable": false
+      },
+      {
+         "src": "text/hello.ts",
+         "dest": "src/pages/api/hello.ts",
+         "executable": false
+      },
+      {
+         "src": "text/Home.module.css",
+         "dest": "src/styles/Home.module.css",
+         "executable": false
+      },
+      {
+         "src": "text/next.config.js",
+         "dest": "next.config.js",
+         "executable": false
+      },
+      {
+         "src": "text/tsconfig.json",
+         "dest": "tsconfig.json",
+         "executable": false
+      }
+   ]
+}

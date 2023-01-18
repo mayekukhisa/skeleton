@@ -87,6 +87,21 @@ class CreateTest {
       }
    }
 
+   @Test
+   fun `generates nextjs projects`() {
+      var projectDir = tempDir.resolve("default-nextjs-project")
+      with(Create()) {
+         parse(arrayOf("--template", "nextjs", "$projectDir"))
+         checkGeneratedFiles(projectDir)
+      }
+
+      projectDir = tempDir.resolve("custom-nextjs-project")
+      with(Create()) {
+         parse(arrayOf("--template", "nextjs", "--name", "My App", "$projectDir"))
+         checkGeneratedFiles(projectDir)
+      }
+   }
+
    @AfterTest
    fun tearDown() {
       System.setOut(originalStdOut)
