@@ -77,6 +77,20 @@ class CreateCommandTest {
       checkGeneratedFiles(projectDir)
    }
 
+   @Test
+   fun `should create next-ts project`() {
+      val projectDir = tempDir.resolve(relative = "next-ts-project")
+      CreateCommand().parse(arrayOf("--template", "next-ts", "$projectDir"))
+      checkGeneratedFiles(projectDir)
+   }
+
+   @Test
+   fun `should create next-ts+tw project`() {
+      val projectDir = tempDir.resolve(relative = "next-ts+tw-project")
+      CreateCommand().parse(arrayOf("--template", "next-ts+tw", "$projectDir"))
+      checkGeneratedFiles(projectDir)
+   }
+
    @AfterTest
    fun tearDown() {
       System.setOut(standardOutputStream)

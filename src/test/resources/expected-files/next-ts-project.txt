@@ -1,0 +1,15 @@
+644 ./.editorconfig
+644 ./.eslintrc.json
+644 ./.gitattributes
+644 ./.gitignore
+644 ./.prettierrc.yml
+644 ./.vscode/settings.json
+644 ./next.config.js
+644 ./package.json
+644 ./public/favicon.ico
+644 ./src/pages/_app.tsx
+644 ./src/pages/_document.tsx
+644 ./src/pages/index.tsx
+644 ./src/styles/globals.css
+644 ./src/styles/home.module.css
+644 ./tsconfig.json
