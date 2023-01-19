@@ -102,6 +102,21 @@ class CreateTest {
       }
    }
 
+   @Test
+   fun `generates nextjs + tailwindcss projects`() {
+      var projectDir = tempDir.resolve("default-nextjs+tailwindcss-project")
+      with(Create()) {
+         parse(arrayOf("--template", "nextjs+tailwindcss", "$projectDir"))
+         checkGeneratedFiles(projectDir)
+      }
+
+      projectDir = tempDir.resolve("custom-nextjs+tailwindcss-project")
+      with(Create()) {
+         parse(arrayOf("--template", "nextjs+tailwindcss", "--name", "My App", "$projectDir"))
+         checkGeneratedFiles(projectDir)
+      }
+   }
+
    @AfterTest
    fun tearDown() {
       System.setOut(originalStdOut)

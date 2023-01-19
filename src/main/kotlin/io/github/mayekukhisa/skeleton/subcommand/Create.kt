@@ -92,6 +92,7 @@ class Create : CliktCommand(
       when (projectTemplate) {
          "kotlin" -> KotlinProject(projectPackage, projectDir, projectName)
          "nextjs" -> NextJsProject(projectDir, projectName)
+         "nextjs+tailwindcss" -> NextJsProject(projectDir, projectName)
          else -> BasicProject(projectDir)
       }
    }
