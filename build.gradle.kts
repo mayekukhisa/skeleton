@@ -20,13 +20,13 @@ plugins {
    application
    id("com.diffplug.spotless") version "6.12.0"
 
-   val kotlinVersion = "1.7.21"
+   val kotlinVersion = "1.8.10"
    kotlin("jvm") version kotlinVersion
    kotlin("plugin.serialization") version kotlinVersion
 }
 
 kotlin {
-   jvmToolchain(11)
+   jvmToolchain(17)
 }
 
 spotless {
@@ -83,10 +83,10 @@ repositories {
 }
 
 dependencies {
-   implementation("com.github.ajalt.clikt:clikt:3.5.1")
+   implementation("com.github.ajalt.clikt:clikt:3.5.2")
    implementation("commons-io:commons-io:2.11.0")
    implementation("org.freemarker:freemarker:2.3.32")
-   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
    testImplementation(kotlin("test"))
 }
