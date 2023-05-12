@@ -136,17 +136,20 @@ class CreateCommand : CliktCommand(
       try {
          val outputFile = projectDir.resolve(relative = templateFile.targetPath)
 
-         if (shouldRender) {
-            FileUtils.writeStringToFile(
-               /* file = */ outputFile,
-               /* data = */ freemarker.renderTemplateFile(filepath = templateFile.sourcePath),
-               /* charset = */ Charsets.UTF_8,
-            )
-         } else {
-            FileUtils.copyFile(
-               /* srcFile = */ templatesDir.resolve(relative = "${projectTemplate.path}/${templateFile.sourcePath}"),
-               /* destFile = */ outputFile,
-            )
+         with(templatesDir.resolve(relative = "${projectTemplate.path}/${templateFile.sourceRoot}")) {
+            if (shouldRender) {
+               freemarker.setDirectoryForTemplateLoading(/* dir = */ this)
+               FileUtils.writeStringToFile(
+                  /* file = */ outputFile,
+                  /* data = */ freemarker.renderTemplateFile(filepath = templateFile.sourcePath),
+                  /* charset = */ Charsets.UTF_8,
+               )
+            } else {
+               FileUtils.copyFile(
+                  /* srcFile = */ resolve(relative = templateFile.sourcePath),
+                  /* destFile = */ outputFile,
+               )
+            }
          }
 
          outputFile.setExecutable(/* executable = */ templateFile.executable, /* ownerOnly = */ false)

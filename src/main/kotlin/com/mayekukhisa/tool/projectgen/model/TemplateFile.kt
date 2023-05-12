@@ -22,5 +22,6 @@ import kotlinx.serialization.Serializable
 data class TemplateFile(
    val sourcePath: String,
    val targetPath: String,
+   val sourceRoot: String = ".",
    val executable: Boolean = false,
 )
