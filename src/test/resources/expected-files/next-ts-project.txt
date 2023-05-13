@@ -6,10 +6,9 @@
 644 ./.vscode/settings.json
 644 ./next.config.js
 644 ./package.json
-644 ./public/favicon.ico
-644 ./src/pages/_app.tsx
-644 ./src/pages/_document.tsx
-644 ./src/pages/index.tsx
-644 ./src/styles/globals.css
-644 ./src/styles/home.module.css
+644 ./src/app/favicon.ico
+644 ./src/app/globals.css
+644 ./src/app/layout.tsx
+644 ./src/app/page.module.css
+644 ./src/app/page.tsx
 644 ./tsconfig.json
