@@ -38,6 +38,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.StringWriter
 import java.util.Locale
+import java.util.UUID
 import freemarker.template.Configuration as FreeMarker
 
 class CreateCommand : CliktCommand(
@@ -80,6 +81,7 @@ class CreateCommand : CliktCommand(
       help = "The directory to create the project at",
    ).file().convert { File(/* pathname = */ it.canonicalPath) }
 
+   private val projectUUID by lazy { UUID.randomUUID().toString() }
    private val templatesDir by lazy { File(/* pathname = */ App.config.getProperty(/* key = */ "templates.dir")) }
 
    private val freemarker by lazy {
@@ -165,6 +167,7 @@ class CreateCommand : CliktCommand(
             /* dataModel = */
             mapOf(
                "projectName" to projectName,
+               "projectUUID" to projectUUID,
                "packageName" to packageName,
             ),
             /* out = */ this,
