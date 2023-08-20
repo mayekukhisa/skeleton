@@ -1,0 +1,13 @@
+644 ./.editorconfig
+644 ./.gitattributes
+644 ./.gitignore
+644 ./.vscode/launch.json
+644 ./.vscode/settings.json
+644 ./.vscode/tasks.json
+644 ./godot-cs-default-project.csproj
+644 ./godot-cs-default-project.sln
+644 ./icon.svg
+644 ./icon.svg.import
+644 ./project.godot
+644 ./scenes/main.tscn
+644 ./scripts/Tag.cs

@@ -78,6 +78,20 @@ class CreateCommandTest {
    }
 
    @Test
+   fun `should create godot-cs default project`() {
+      val projectDir = tempDir.resolve(relative = "godot-cs-default-project")
+      CreateCommand().parse(arrayOf("--template", "godot-cs", "$projectDir"))
+      checkGeneratedFiles(projectDir)
+   }
+
+   @Test
+   fun `should create godot-cs customized project`() {
+      val projectDir = tempDir.resolve(relative = "godot-cs-customized-project")
+      CreateCommand().parse(arrayOf("--template", "godot-cs", "-n", "New Game", "$projectDir"))
+      checkGeneratedFiles(projectDir)
+   }
+
+   @Test
    fun `should create next-ts project`() {
       val projectDir = tempDir.resolve(relative = "next-ts-project")
       CreateCommand().parse(arrayOf("--template", "next-ts", "$projectDir"))
