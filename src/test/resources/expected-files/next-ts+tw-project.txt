@@ -5,11 +5,12 @@
 644 ./.prettierrc.yml
 644 ./.vscode/settings.json
 644 ./next.config.js
+644 ./package-lock.json
 644 ./package.json
 644 ./postcss.config.js
 644 ./src/app/favicon.ico
 644 ./src/app/globals.css
 644 ./src/app/layout.tsx
 644 ./src/app/page.tsx
-644 ./tailwind.config.js
+644 ./tailwind.config.ts
 644 ./tsconfig.json

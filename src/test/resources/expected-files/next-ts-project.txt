@@ -5,6 +5,7 @@
 644 ./.prettierrc.yml
 644 ./.vscode/settings.json
 644 ./next.config.js
+644 ./package-lock.json
 644 ./package.json
 644 ./src/app/favicon.ico
 644 ./src/app/globals.css
