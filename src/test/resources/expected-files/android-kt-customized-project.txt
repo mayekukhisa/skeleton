@@ -10,8 +10,8 @@
 644 ./app/src/main/kotlin/com/company/project/ui/theme/Color.kt
 644 ./app/src/main/kotlin/com/company/project/ui/theme/Theme.kt
 644 ./app/src/main/kotlin/com/company/project/ui/theme/Type.kt
-644 ./app/src/main/res/drawable-v24/ic_launcher_foreground.xml
 644 ./app/src/main/res/drawable/ic_launcher_background.xml
+644 ./app/src/main/res/drawable/ic_launcher_foreground.xml
 644 ./app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
 644 ./app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
 644 ./app/src/main/res/mipmap-hdpi/ic_launcher.webp
