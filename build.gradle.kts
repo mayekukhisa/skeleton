@@ -92,7 +92,7 @@ dependencies {
 }
 
 group = "com.mayekukhisa.tool.projectgen"
-version = "0.1.0"
+version = rootProject.file("version.txt").readText().trim()
 
 application {
    mainClass.set("${project.group}.MainKt")
