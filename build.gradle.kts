@@ -105,6 +105,16 @@ sourceSets {
    }
 }
 
+distributions {
+   main {
+      contents {
+         from(".") {
+            include("LICENSE", "NOTICE", "version.txt")
+         }
+      }
+   }
+}
+
 val generateBuildConfig = tasks.register("generateBuildConfig") {
    doLast {
       generatedSrcDir.map { it.file("${project.group}/BuildConfig.kt") }.get().asFile.apply {
