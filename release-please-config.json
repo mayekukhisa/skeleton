@@ -1,0 +1,9 @@
+{
+   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+   "release-type": "simple",
+   "pull-request-title-pattern": "chore: release ${version}",
+   "pull-request-header": ":robot: I have created a new release",
+   "packages": {
+      ".": {}
+   }
+}

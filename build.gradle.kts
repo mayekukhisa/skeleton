@@ -66,7 +66,7 @@ spotless {
 
       format("Markdown") {
          target("**/*.md")
-         targetExclude("**/build/**/*.md")
+         targetExclude("/CHANGELOG.md", "**/build/**/*.md")
          prettier().configFile(this@with)
       }
 

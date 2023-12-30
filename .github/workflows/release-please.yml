@@ -1,0 +1,39 @@
+name: Release Please
+
+on:
+   push:
+      branches:
+         - main
+
+permissions:
+   contents: write
+   pull-requests: write
+
+jobs:
+   release-please:
+      runs-on: ubuntu-latest
+      steps:
+         - id: release
+           name: Create release
+           uses: google-github-actions/release-please-action@v4
+
+         - name: Checkout repository
+           if: ${{ steps.release.outputs.release_created }}
+           uses: actions/checkout@v4
+
+         - name: Set up JDK
+           if: ${{ steps.release.outputs.release_created }}
+           uses: actions/setup-java@v4
+           with:
+              distribution: "temurin"
+              java-version: "17"
+
+         - name: Build with Gradle
+           if: ${{ steps.release.outputs.release_created }}
+           run: chmod +x gradlew && ./gradlew build -x test
+
+         - name: Upload release assets
+           if: ${{ steps.release.outputs.release_created }}
+           env:
+              GH_TOKEN: ${{ github.token }}
+           run: gh release upload ${{ steps.release.outputs.tag_name }} build/distributions/*
