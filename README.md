@@ -86,7 +86,7 @@ To use this tool, ensure the following software is installed on your system:
 
 This tool is available under the terms of the [GPL-3.0 license][4].
 
-&copy; 2023 Mayeku Khisa.
+&copy; 2023-2024 Mayeku Khisa.
 
 [1]: https://github.com/mayekukhisa/skeleton/releases/latest
 [2]: https://github.com/mayekukhisa/skeleton-templates#installation
