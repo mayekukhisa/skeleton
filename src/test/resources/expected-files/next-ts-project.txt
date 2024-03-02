@@ -1,10 +1,13 @@
+644 ./.codecaprc.json
 644 ./.editorconfig
 644 ./.eslintrc.json
 644 ./.gitattributes
 644 ./.gitignore
 644 ./.prettierrc.yml
 644 ./.vscode/settings.json
-644 ./next.config.js
+644 ./header-templates/general.txt
+644 ./header-templates/next-config.txt
+644 ./next.config.mjs
 644 ./package-lock.json
 644 ./package.json
 644 ./src/app/favicon.ico
