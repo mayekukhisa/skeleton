@@ -30,6 +30,7 @@
 644 ./app/src/test/kotlin/com/company/project/ExampleUnitTest.kt
 644 ./build.gradle.kts
 644 ./gradle.properties
+644 ./gradle/libs.versions.toml
 644 ./gradle/wrapper/gradle-wrapper.jar
 644 ./gradle/wrapper/gradle-wrapper.properties
 644 ./gradlew.bat
